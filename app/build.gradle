@@ -33,3 +33,10 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
 }
+
+task processorTask(type: Exec) {
+    commandLine 'cp', '../processor/build/libs/processor.jar', 'libs/'
+}
+
+processorTask.dependsOn(':processor:build')
+preBuild.dependsOn(processorTask)
